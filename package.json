@@ -1,0 +1,27 @@
+{
+  "name": "lonlat",
+  "version": "0.0.0",
+  "description": "Converters for various coordinate representations.",
+  "author": {
+    "name": "Damian Krzeminski",
+    "email": "pirxpilot@code42day.com",
+    "url": "https://code42day.com"
+  },
+  "repository": "code42day/lonlat",
+  "license": "MIT",
+  "keywords": [
+    "lonlat",
+    "latitude",
+    "longitude",
+    "GeoJSON"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "jshint": "^2.7.0",
+    "mocha": "^2.2.5",
+    "should": "^6.0.3"
+  },
+  "scripts": {
+    "test": "make check"
+  }
+}
