@@ -1,1 +1,3 @@
-module.exports = require('./lib/lonlat');
+module.exports = {
+  geojson: require('./lib/geojson')
+};
