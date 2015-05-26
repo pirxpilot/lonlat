@@ -42,3 +42,73 @@ describe('geojson.multiPolygon', function() {
     });
   });
 });
+
+
+function createBoxString(n) {
+  var i, r = '';
+  for(i = 0; i < n; i++) {
+    r += '0,0,1,1,';
+  }
+  return r.slice(0, -1);
+}
+
+describe('geojson.shapesArray', function() {
+
+  it('creates a single Polygon when a single box is passed', function() {
+    var result = geojson.shapesArray('0,0,1,1', 10);
+    result.should.have.length(1);
+    result[0].should.eql({
+      type: 'Polygon',
+      coordinates: [
+        [
+          [0, 0],
+          [1, 0],
+          [1, 1],
+          [0, 1],
+          [0, 0]
+        ]
+      ]
+    });
+  });
+
+  it('creates Polygons only when suggestedLen is big', function() {
+    var boxes = createBoxString(3);
+    var result = geojson.shapesArray(boxes, 10);
+    result.should.have.length(3);
+    result.forEach(function(r) {
+      r.should.eql({
+        type: 'Polygon',
+        coordinates: [
+          [
+            [0, 0],
+            [1, 0],
+            [1, 1],
+            [0, 1],
+            [0, 0]
+          ]
+        ]
+      });
+    });
+  });
+
+  it('creates MultiPolygons and Polygons when suggestedLen is smaller then boxes', function() {
+    var boxes = createBoxString(21);
+    var result = geojson.shapesArray(boxes, 5);
+    result.should.have.length(6);
+    result.slice(0, 5).forEach(function(r) {
+      r.should.have.property('type', 'MultiPolygon');
+      // 4 boxes in each polygon
+      r.should.have.property('coordinates').with.length(4);
+    });
+    result[5].should.have.property('type', 'Polygon');
+    result[5].should.have.property('coordinates', [
+      [
+        [0, 0],
+        [1, 0],
+        [1, 1],
+        [0, 1],
+        [0, 0]
+      ]
+    ]);
+  });
+});

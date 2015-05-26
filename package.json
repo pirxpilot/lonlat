@@ -15,7 +15,9 @@
     "longitude",
     "GeoJSON"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^3.9.3"
+  },
   "devDependencies": {
     "jshint": "^2.7.0",
     "mocha": "^2.2.5",
