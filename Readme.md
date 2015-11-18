@@ -17,8 +17,25 @@ $ npm install --save lonlat
 ```js
 var lonlat = require('lonlat');
 
-lonlat('Rainbow');
+lonlat.geojson.centerSphere();
+lonlat.mongo.toPoly();
 ```
+
+### `geojson` methods always return geojson shape or collection of shapes
+
+- `centerSphere`- create a Sphere corresponding to inscribed circle
+- `multiPolygon` - create a Polygon from the string of coordinates
+- `polygon` - create a Polygon from the string of coordinates
+- `shapesArray` - split boxes into Polygons and Multipolygons
+- `splitBox` - split box into grid of Polygons
+
+
+### `mongo` methods return coordinates pairs [lon,lat] that can be indexed by mongo
+
+- `toLonLat`
+- `toPoly`
+- `toBox`
+- `toBoxes`
 
 ## License
 
