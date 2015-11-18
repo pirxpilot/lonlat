@@ -112,3 +112,80 @@ describe('geojson.shapesArray', function() {
     ]);
   });
 });
+
+describe('geojson.splitBox', function() {
+  it('should split box into 4x4 grid', function() {
+    var boxes = geojson.splitBox([[-1,-2],[15,30]]);
+    boxes.should.have.length(16);
+
+    boxes.forEach(function(shape) {
+      shape.should.have.property('type', 'Polygon');
+      shape.should.have.property('coordinates').with.length(1);
+    });
+
+    boxes[0].coordinates[0].should.eql([
+      [-1, -2],
+      [3, -2],
+      [3, 6],
+      [-1, 6],
+      [-1, -2],
+    ]);
+
+    boxes[15].coordinates[0].should.eql([
+      [11, 22],
+      [15, 22],
+      [15, 30],
+      [11, 30],
+      [11, 22],
+    ]);
+
+  });
+
+  it('should respect suggested size', function() {
+    var boxes = geojson.splitBox([[-1,-2],[15,30]], { x:8, y:2 });
+    boxes.should.have.length(16);
+
+    boxes.forEach(function(shape) {
+      shape.should.have.property('type', 'Polygon');
+      shape.should.have.property('coordinates').with.length(1);
+    });
+
+    boxes[0].coordinates[0].should.eql([
+      [-1, -2],
+      [1, -2],
+      [1, 14],
+      [-1, 14],
+      [-1, -2],
+    ]);
+
+    boxes[15].coordinates[0].should.eql([
+      [13, 14],
+      [15, 14],
+      [15, 30],
+      [13, 30],
+      [13, 14],
+    ]);
+
+  });
+
+  it('should calculate number of shapes based on suggested delta', function() {
+    var boxes = geojson.splitBox([[-1,-2],[15,30]], { delta: 10 });
+    boxes.should.have.length(8);
+
+    boxes.forEach(function(shape) {
+      shape.should.have.property('type', 'Polygon');
+      shape.should.have.property('coordinates').with.length(1);
+    });
+
+    boxes[0].coordinates[0].should.eql([
+      [-1, -2],
+      [7, -2],
+      [7, 6],
+      [-1, 6],
+      [-1, -2],
+    ]);
+
+  });
+
+
+});
