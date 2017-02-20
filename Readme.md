@@ -39,13 +39,13 @@ lonlat.mongo.toPoly();
 
 ## License
 
-MIT © [code42day](https://code42day.com)
+MIT © [Damian Krzeminski](https://pirxpilot.me)
 
 [npm-image]: https://img.shields.io/npm/v/lonlat.svg
 [npm-url]: https://npmjs.org/package/lonlat
 
-[travis-url]: https://travis-ci.org/code42day/lonlat
-[travis-image]: https://img.shields.io/travis/code42day/lonlat.svg
+[travis-url]: https://travis-ci.org/pirxpilot/lonlat
+[travis-image]: https://img.shields.io/travis/pirxpilot/lonlat.svg
 
-[gemnasium-image]: https://img.shields.io/gemnasium/code42day/lonlat.svg
-[gemnasium-url]: https://gemnasium.com/code42day/lonlat
+[gemnasium-image]: https://img.shields.io/gemnasium/pirxpilot/lonlat.svg
+[gemnasium-url]: https://gemnasium.com/pirxpilot/lonlat
