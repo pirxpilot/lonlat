@@ -1,6 +1,6 @@
 [![NPM version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Dependency Status][gemnasium-image]][gemnasium-url]
+[![Build Status][build-image]][build-url]
+[![Dependency Status][deps-image]][deps-url]
 
 # lonlat
 
@@ -41,11 +41,11 @@ lonlat.mongo.toPoly();
 
 MIT © [Damian Krzeminski](https://pirxpilot.me)
 
-[npm-image]: https://img.shields.io/npm/v/lonlat.svg
+[npm-image]: https://img.shields.io/npm/v/lonlat
 [npm-url]: https://npmjs.org/package/lonlat
 
-[travis-url]: https://travis-ci.org/pirxpilot/lonlat
-[travis-image]: https://img.shields.io/travis/pirxpilot/lonlat.svg
+[build-url]: https://github.com/pirxpilot/lonlat/actions/workflows/check.yaml
+[build-image]: https://img.shields.io/github/actions/workflow/status/pirxpilot/lonlat/check.yaml?branch=main
 
-[gemnasium-image]: https://img.shields.io/gemnasium/pirxpilot/lonlat.svg
-[gemnasium-url]: https://gemnasium.com/pirxpilot/lonlat
+[deps-image]: https://img.shields.io/librariesio/release/npm/lonlat
+[deps-url]: https://libraries.io/npm/lonlat
