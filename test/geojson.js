@@ -1,3 +1,4 @@
+const { describe, it } = require('node:test');
 var geojson = require('..').geojson;
 
 describe('geojson.centerSphere', function() {

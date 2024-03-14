@@ -1,3 +1,4 @@
+const { describe, it } = require('node:test');
 var util = require('..').util;
 
 describe('parseAllFloats', function() {

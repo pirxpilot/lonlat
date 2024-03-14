@@ -20,8 +20,7 @@
   },
   "devDependencies": {
     "@pirxpilot/jshint": "~3",
-    "mocha": "^3.0.2",
-    "should": "^11.1.0"
+    "should": "~13"
   },
   "scripts": {
     "test": "make check"

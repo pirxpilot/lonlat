@@ -1,3 +1,4 @@
+const { describe, it } = require('node:test');
 var mongo = require('..').mongo;
 
 describe('mongo.lonlat', function() {
