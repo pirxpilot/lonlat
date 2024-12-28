@@ -1,14 +1,15 @@
 const { describe, it } = require('node:test');
+const assert = require('node:assert/strict');
 const { geojson } = require('..');
 
 describe('geojson.centerSphere', function () {
   it('should convert string to GeoJSON polygon', function () {
-    geojson.centerSphere('12,13.4', 1000).should.eql({
+    assert.deepEqual(geojson.centerSphere('12,13.4', 1000), {
       $centerSphere: [
         [12, 13.4], 0.0001567855942887398
       ]
     });
-    geojson.centerSphere('-50.1,-10.4', 5000).should.eql({
+    assert.deepEqual(geojson.centerSphere('-50.1,-10.4', 5000), {
       $centerSphere: [
         [-50.1, -10.4], 0.000783927971443699
       ]
@@ -18,7 +19,7 @@ describe('geojson.centerSphere', function () {
 
 describe('geojson.polygon', function () {
   it('should convert string to coordinates array', function () {
-    geojson.polygon('4,6,0,3').should.eql({
+    assert.deepEqual(geojson.polygon('4,6,0,3'), {
       type: 'Polygon',
       coordinates: [
         [
@@ -35,7 +36,7 @@ describe('geojson.polygon', function () {
 
 describe('geojson.multiPolygon', function () {
   it('should convert box string to MultiPolygon', function () {
-    geojson.multiPolygon('12,13.4,-50.1,-10.4,31,52,11.2,22.3').should.eql({
+    assert.deepEqual(geojson.multiPolygon('12,13.4,-50.1,-10.4,31,52,11.2,22.3'), {
       type: 'MultiPolygon',
       coordinates: [
         [
@@ -75,8 +76,8 @@ describe('geojson.shapesArray', function () {
 
   it('creates a single Polygon when a single box is passed', function () {
     const result = geojson.shapesArray('0,0,1,1', 10);
-    result.should.have.length(1);
-    result[0].should.eql({
+    assert.equal(result.length, 1);
+    assert.deepEqual(result[0], {
       type: 'Polygon',
       coordinates: [
         [
@@ -93,9 +94,9 @@ describe('geojson.shapesArray', function () {
   it('creates Polygons only when suggestedLen is big', function () {
     const boxes = createBoxString(3);
     const result = geojson.shapesArray(boxes, 10);
-    result.should.have.length(3);
+    assert.equal(result.length, 3);
     result.forEach(function (r) {
-      r.should.eql({
+      assert.deepEqual(r, {
         type: 'Polygon',
         coordinates: [
           [
@@ -113,14 +114,14 @@ describe('geojson.shapesArray', function () {
   it('creates MultiPolygons and Polygons when suggestedLen is smaller then boxes', function () {
     const boxes = createBoxString(21);
     const result = geojson.shapesArray(boxes, 5);
-    result.should.have.length(6);
+    assert.equal(result.length, 6);
     result.slice(0, 5).forEach(function (r) {
-      r.should.have.property('type', 'MultiPolygon');
+      assert.equal(r.type, 'MultiPolygon');
       // 4 boxes in each polygon
-      r.should.have.property('coordinates').with.length(4);
+      assert.equal(r.coordinates.length, 4);
     });
-    result[5].should.have.property('type', 'Polygon');
-    result[5].should.have.property('coordinates', [
+    assert.equal(result[5].type, 'Polygon');
+    assert.deepEqual(result[5].coordinates, [
       [
         [0, 0],
         [1, 0],
@@ -138,14 +139,14 @@ describe('geojson.splitBox', function () {
       [-1, -2],
       [15, 30]
     ]);
-    boxes.should.have.length(16);
+    assert.equal(boxes.length, 16);
 
     boxes.forEach(function (shape) {
-      shape.should.have.property('type', 'Polygon');
-      shape.should.have.property('coordinates').with.length(1);
+      assert.equal(shape.type, 'Polygon');
+      assert.equal(shape.coordinates.length, 1);
     });
 
-    boxes[0].coordinates[0].should.eql([
+    assert.deepEqual(boxes[0].coordinates[0], [
       [-1, -2],
       [3, -2],
       [3, 6],
@@ -153,7 +154,7 @@ describe('geojson.splitBox', function () {
       [-1, -2],
     ]);
 
-    boxes[15].coordinates[0].should.eql([
+    assert.deepEqual(boxes[15].coordinates[0], [
       [11, 22],
       [15, 22],
       [15, 30],
@@ -168,14 +169,14 @@ describe('geojson.splitBox', function () {
       [-1, -2],
       [15, 30]
     ], { x: 8, y: 2 });
-    boxes.should.have.length(16);
+    assert.equal(boxes.length, 16);
 
     boxes.forEach(function (shape) {
-      shape.should.have.property('type', 'Polygon');
-      shape.should.have.property('coordinates').with.length(1);
+      assert.equal(shape.type, 'Polygon');
+      assert.equal(shape.coordinates.length, 1);
     });
 
-    boxes[0].coordinates[0].should.eql([
+    assert.deepEqual(boxes[0].coordinates[0], [
       [-1, -2],
       [1, -2],
       [1, 14],
@@ -183,7 +184,7 @@ describe('geojson.splitBox', function () {
       [-1, -2],
     ]);
 
-    boxes[15].coordinates[0].should.eql([
+    assert.deepEqual(boxes[15].coordinates[0], [
       [13, 14],
       [15, 14],
       [15, 30],
@@ -198,14 +199,14 @@ describe('geojson.splitBox', function () {
       [-1, -2],
       [15, 30]
     ], { delta: 10 });
-    boxes.should.have.length(8);
+    assert.equal(boxes.length, 8);
 
     boxes.forEach(function (shape) {
-      shape.should.have.property('type', 'Polygon');
-      shape.should.have.property('coordinates').with.length(1);
+      assert.equal(shape.type, 'Polygon');
+      assert.equal(shape.coordinates.length, 1);
     });
 
-    boxes[0].coordinates[0].should.eql([
+    assert.deepEqual(boxes[0].coordinates[0], [
       [-1, -2],
       [7, -2],
       [7, 6],
