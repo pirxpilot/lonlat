@@ -18,9 +18,7 @@
     "longitude",
     "GeoJSON"
   ],
-  "dependencies": {
-    "lodash": "^4.15.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@pirxpilot/jshint": "~3",
     "should": "~13"
