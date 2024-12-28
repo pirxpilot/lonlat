@@ -20,8 +20,7 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "@pirxpilot/jshint": "~3",
-    "should": "~13"
+    "@pirxpilot/jshint": "~3"
   },
   "scripts": {
     "test": "make check"
