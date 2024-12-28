@@ -1,4 +1,10 @@
 
+2.0.1 / 2024-12-28
+==================
+
+ * replace `should` with standard `node:assert`
+ * remove `lodash` dependency
+
 2.0.0 / 2024-03-14
 ==================
 
