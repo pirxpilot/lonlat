@@ -1,6 +1,6 @@
 {
   "name": "lonlat",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Converters for various coordinate representations.",
   "author": {
     "name": "Damian Krzeminski",
